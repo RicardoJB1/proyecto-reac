@@ -15,8 +15,13 @@ const ListaDocentes = () => {
                     throw new Error(`Error HTTP: ${response.status}`);
                 }
                 const data = await response.json();
-                setDocentesMasculinos(data.masculinos);
-                setDocentesFemeninos(data.femeninos);
+
+                // Filtrar docentes por sexo
+                const masculinos = data.filter(docente => docente.sexo === 'M');
+                const femeninos = data.filter(docente => docente.sexo === 'F');
+
+                setDocentesMasculinos(masculinos);
+                setDocentesFemeninos(femeninos);
             } catch (error) {
                 console.error("Fetch error:", error.message);
             }
@@ -64,17 +69,17 @@ const ListaDocentes = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>Clave ISSEMYN</th>
+                        <th>ID</th>
                         <th>Nombre</th>
-                        {/* Añadir aquí otras columnas si tienes más datos, como Edad, Cargo, etc. */}
+                        <th>Teléfono</th>
                     </tr>
                 </thead>
                 <tbody>
                     {docentesMasculinos.map((docente) => (
-                        <tr key={docente.issemyn}>
-                            <td>{docente.issemyn}</td>
+                        <tr key={docente.id}>
+                            <td>{docente.id}</td>
                             <td>{docente.nombre}</td>
-                            {/* Añadir aquí otras celdas para los datos adicionales */}
+                            <td>{docente.telefono}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -85,17 +90,17 @@ const ListaDocentes = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>Clave ISSEMYN</th>
+                        <th>ID</th>
                         <th>Nombre</th>
-                        {/* Añadir aquí otras columnas si tienes más datos, como Edad, Cargo, etc. */}
+                        <th>Teléfono</th>
                     </tr>
                 </thead>
                 <tbody>
                     {docentesFemeninos.map((docente) => (
-                        <tr key={docente.issemyn}>
-                            <td>{docente.issemyn}</td>
+                        <tr key={docente.id}>
+                            <td>{docente.id}</td>
                             <td>{docente.nombre}</td>
-                            {/* Añadir aquí otras celdas para los datos adicionales */}
+                            <td>{docente.telefono}</td>
                         </tr>
                     ))}
                 </tbody>
