@@ -10,7 +10,7 @@ const ListaDocentes = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://alex.starcode.com.mx/api.php');
+                const response = await fetch('https://alex.starcode.com.mx/api.php');
                 if (!response.ok) {
                     throw new Error(`Error HTTP: ${response.status}`);
                 }
